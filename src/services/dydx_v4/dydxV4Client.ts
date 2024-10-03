@@ -82,15 +82,13 @@ export class DydxV4Client extends AbstractDexClient {
 		const { client, subaccount } = await this.buildCompositeClient();
 
 		const market = orderParams.market;
-		// Change order type to LIMIT
 		const type = OrderType.LIMIT;
 		const side = orderParams.side;
 		const timeInForce = OrderTimeInForce.GTT;
 		const execution = OrderExecution.DEFAULT;
-		// Remove slippage calculation as it's not needed for limit orders
 		const price = orderParams.price;
 		const size = orderParams.size;
-		const postOnly = true; // Set to true for limit orders
+		const postOnly = false; // Changed to false to allow immediate fills
 		const reduceOnly = false;
 		const triggerPrice = null;
 		let count = 0;
